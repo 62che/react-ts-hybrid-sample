@@ -1,4 +1,4 @@
-# A Boilerplate For React + Ts + MobX + MaterialUI
+# A Boilerplate For React + Ts + MobX + MaterialUI + Capacitor
 
 ## Includes...
 
@@ -10,6 +10,7 @@
 - Class Component Example
 - Functional Component Example
 - Storybook
+- Capacitor (Successor of Cordova for Hybrid App)
 
 ---
 
@@ -46,6 +47,13 @@
 
 ```cmd
 > npm run build
+```
+
+### Android Build
+
+```cmd
+> npx cap add android
+> npx cap sync # or copy. need to `build/` artifact.
 ```
 
 ---
