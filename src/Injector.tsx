@@ -9,6 +9,8 @@ import CssBaseline from '@material-ui/core/CssBaseline'
 
 import RootStore from 'store'
 
+import { Capacitor } from '@capacitor/core'
+
 const rootStore = new RootStore()
 const hashHistory: History = createHashHistory()
 const history = syncHistoryWithStore(hashHistory, rootStore.router)
@@ -19,7 +21,8 @@ if (process.env.NODE_ENV !== 'test') {
   ;(window as any).___debug = {
     rootStore,
     history,
-    env: process.env
+    env: process.env,
+    Capacitor
   }
 }
 

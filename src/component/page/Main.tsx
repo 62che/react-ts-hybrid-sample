@@ -13,6 +13,8 @@ import ClassCounter from 'component/example/ClassCounter'
 import ClassCounterWithMobx from 'component/example/ClassCounterWithMobx'
 import FunctionalCounter from 'component/example/FunctionalCounter'
 
+import { HTTP } from '@ionic-native/http'
+
 const useStyles = makeStyles((theme: Theme) => {
   // console.log(theme)
   return createStyles({
@@ -30,10 +32,24 @@ const Main: React.FC = () => {
 
   const onClick = () => router.push('/other')
 
+  const onClickApi = async () => {
+    console.log(HTTP)
+    HTTP.setRequestTimeout(10)
+    try {
+      const response = await HTTP.get('https://google.com', {}, {})
+      console.log(response)
+    } catch (e) {
+      console.error(e)
+    }
+  }
+
   return (
     <Container className={styles.default}>
       <Button onClick={onClick} variant="contained">
         Button
+      </Button>
+      <Button onClick={onClickApi} variant="contained">
+        API Test
       </Button>
       <ClassCounter initial={10} />
       <ClassCounterWithMobx />
