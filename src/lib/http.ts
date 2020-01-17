@@ -1,43 +1,31 @@
-import axios, { AxiosRequestConfig, AxiosResponse, AxiosError } from 'axios'
+import { isNative } from 'lib/native'
+import { HTTP } from '@ionic-native/http'
 
-const instance = axios.create({
-  baseURL: process.env.REACT_APP_BASE_URL,
-  timeout: 10000,
-  // withCredentials: true,
-  headers: {
-    Authorization: 'Bearer ...'
+const { REACT_APP_GOOGLE_PREFIX, REACT_APP_GOOGLE_URL } = process.env
+
+if (isNative) {
+  HTTP.setRequestTimeout(10)
+}
+
+const refineUrl = (url: string): string => {
+  let newUrl = url
+  if (url.startsWith(REACT_APP_GOOGLE_PREFIX!)) {
+    newUrl = url.replace(REACT_APP_GOOGLE_PREFIX!, REACT_APP_GOOGLE_URL!)
   }
-})
+  console.log(url, newUrl)
 
-instance.interceptors.request.use(
-  async (config: AxiosRequestConfig): Promise<AxiosRequestConfig> => {
-    // console.log('axios request interceptor:', config)
-    return config
-  },
-  async (error: Error): Promise<Error> => {
-    console.log('axios request interceptor error:', error)
-    throw error
-    // return error
+  return newUrl
+}
+
+export const request = async (url: string, options?: any) => {
+  let response
+  if (isNative) {
+    console.log('HTTP.sendRequest to', refineUrl(url))
+    response = await HTTP.sendRequest(refineUrl(url), options)
+  } else {
+    // web app or dev server using proxy
+    console.log('fetch to', url)
+    response = await fetch(url, options)
   }
-)
-
-instance.interceptors.response.use(
-  async (response: AxiosResponse<any>): Promise<AxiosResponse<any>> => {
-    // console.log('axios response interceptor:', response)
-    return response
-  },
-  async (error: any): Promise<any> => {
-    if (isAxiosError(error)) {
-      const axiosError: AxiosError = error as AxiosError
-      console.log('axios response interceptor axiosError:', axiosError)
-    } else {
-      console.log('axios response interceptor error:', error)
-    }
-    throw error
-    // return error
-  }
-)
-
-export const isAxiosError = (error: any): boolean => error.isAxiosError === true
-
-export default instance
+  return response
+}

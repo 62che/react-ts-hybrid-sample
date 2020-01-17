@@ -17,6 +17,7 @@
     "axios": "^0.19.0",
     "cordova-plugin-advanced-http": "^2.3.1",
     "cordova-plugin-file": "^6.0.2",
+    "http-proxy-middleware": "^0.20.0",
     "mobx": "^5.15.0",
     "mobx-react": "^6.1.4",
     "mobx-react-router": "^4.0.7",
@@ -25,6 +26,12 @@
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.2.0",
     "typescript": "3.7.2"
+  },
+  "devDependencies": {
+    "@storybook/addon-actions": "^5.2.8",
+    "@storybook/addon-links": "^5.2.8",
+    "@storybook/addons": "^5.2.8",
+    "@storybook/react": "^5.2.8"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -60,11 +67,5 @@
       "src/lib",
       ".stories.tsx$"
     ]
-  },
-  "devDependencies": {
-    "@storybook/addon-actions": "^5.2.8",
-    "@storybook/addon-links": "^5.2.8",
-    "@storybook/addons": "^5.2.8",
-    "@storybook/react": "^5.2.8"
   }
 }
