@@ -1,0 +1,8 @@
+{
+  "appId": "com.mydomain.app2",
+  "appName": "capacitor-test-app",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "build",
+  "cordova": {}
+}
