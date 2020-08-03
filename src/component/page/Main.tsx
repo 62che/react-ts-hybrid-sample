@@ -13,7 +13,7 @@ import ClassCounter from 'component/example/ClassCounter'
 import ClassCounterWithMobx from 'component/example/ClassCounterWithMobx'
 import FunctionalCounter from 'component/example/FunctionalCounter'
 
-import { HTTP } from '@ionic-native/http'
+import { request } from 'lib/http'
 
 const useStyles = makeStyles((theme: Theme) => {
   // console.log(theme)
@@ -33,10 +33,17 @@ const Main: React.FC = () => {
   const onClick = () => router.push('/other')
 
   const onClickApi = async () => {
-    console.log(HTTP)
-    HTTP.setRequestTimeout(10)
     try {
-      const response = await HTTP.get('https://google.com', {}, {})
+      const response = await request('/google', {})
+      console.log(response)
+    } catch (e) {
+      console.error(e)
+    }
+  }
+
+  const onClickApi2 = async () => {
+    try {
+      const response = await request('/google/notfound', {})
       console.log(response)
     } catch (e) {
       console.error(e)
@@ -50,6 +57,9 @@ const Main: React.FC = () => {
       </Button>
       <Button onClick={onClickApi} variant="contained">
         API Test
+      </Button>
+      <Button onClick={onClickApi2} variant="contained">
+        API Test2
       </Button>
       <ClassCounter initial={10} />
       <ClassCounterWithMobx />

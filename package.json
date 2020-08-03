@@ -2,6 +2,18 @@
   "name": "react-ts-mobx-material",
   "version": "0.1.0",
   "private": true,
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "test:once": "react-scripts test --watchAll=false",
+    "test:coverage": "react-scripts test --coverage --watchAll=false",
+    "test:watch": "npm test -- --watch",
+    "eject": "react-scripts eject",
+    "storybook": "start-storybook -p 9009 -s public",
+    "build-storybook": "build-storybook -s public",
+    "npm-check": "npx npm-check -i api -i Injector -i store -i component -i lib -i App"
+  },
   "dependencies": {
     "@capacitor/android": "^2.4.0",
     "@capacitor/cli": "^2.4.0",
@@ -26,17 +38,15 @@
     "react-scripts": "^3.4.1",
     "typescript": "^3.9.7"
   },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "test:once": "react-scripts test --watchAll=false",
-    "test:coverage": "react-scripts test --coverage --watchAll=false",
-    "test:watch": "npm test -- --watch",
-    "eject": "react-scripts eject",
-    "storybook": "start-storybook -p 9009 -s public",
-    "build-storybook": "build-storybook -s public",
-    "npm-check": "npx npm-check -i api -i Injector -i store -i component -i lib -i App"
+  "devDependencies": {
+    "@storybook/addon-actions": "^5.3.19",
+    "@storybook/addon-links": "^5.3.19",
+    "@storybook/addons": "^5.3.19",
+    "@storybook/react": "^5.3.19",
+    "@types/jest": "^26.0.8",
+    "eslint-config-react-app": "^5.2.1",
+    "http-proxy-middleware": "^1.0.5",
+    "npm-check": "^5.9.2"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -61,14 +71,5 @@
       "src/lib",
       ".stories.tsx$"
     ]
-  },
-  "devDependencies": {
-    "@storybook/addon-actions": "^5.3.19",
-    "@storybook/addon-links": "^5.3.19",
-    "@storybook/addons": "^5.3.19",
-    "@storybook/react": "^5.3.19",
-    "@types/jest": "^26.0.8",
-    "eslint-config-react-app": "^5.2.1",
-    "npm-check": "^5.9.2"
   }
 }

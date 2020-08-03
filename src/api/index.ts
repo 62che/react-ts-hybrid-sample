@@ -1,4 +1,4 @@
-import http from 'lib/http'
+import { request } from 'lib/http'
 
 import * as srv2 from './srv2'
 
@@ -9,11 +9,9 @@ const srv1 = {
     v1: {
       content: {
         list: async (): Promise<Content> => {
-          return await http({
+          return await request('/module/v1/content/list', {
             method: 'get',
-            url: '/module/v1/content/list',
-            params: {
-            }
+            params: {}
           })
         }
       }
