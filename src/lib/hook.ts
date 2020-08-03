@@ -9,5 +9,5 @@ import RootStore from 'store'
  * 참조) https://mobx-react.js.org/recipes-migration#hooks-for-the-rescue
  */
 export const useStore = (): RootStore => {
-  return useContext(MobXProviderContext)
+  return useContext(MobXProviderContext) as RootStore
 }
